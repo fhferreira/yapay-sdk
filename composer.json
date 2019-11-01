@@ -1,9 +1,13 @@
 {
-    "name": "rockbuzz/sdk-yapay",
+    "name": "fhferreira/sdk-yapay",
     "authors": [
         {
             "name": "Tiago Lopes",
             "email": "tiago@rockbuzz.com.br"
+        },
+         {
+            "name": "Flávio Ferreira",
+            "email": "flaviometalvale@gmail.com"
         }
     ],
     "autoload": {
