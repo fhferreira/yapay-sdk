@@ -47,16 +47,15 @@ class Address
     private $country;
 
     public function __construct(
-        string $street, 
-        int $number, 
-        string $complement, 
+        string $street,
+        int $number,
+        string $complement,
         string $postalCode,
         string $neighborhood,
         string $city,
         string $state,
         string $country = self::DEFAULT_COUNTRY
-    )
-    {
+    ) {
         $this->street = $street;
         $this->number = $number;
         $this->complement = $complement;
@@ -65,7 +64,7 @@ class Address
         $this->city = $city;
         $this->state = $state;
         $this->country = $country;
-    }    
+    }
 
     public function getStreet()
     {
@@ -86,7 +85,7 @@ class Address
     {
         return $this->postalCode;
     }
- 
+
     public function getNeighborhood()
     {
         return $this->neighborhood;
@@ -99,17 +98,19 @@ class Address
 
     public function getState()
     {
-        if (strlen($this->state) != 2) {
+        if (2 != strlen($this->state)) {
             throw new \InvalidArgumentException('state must be two characters');
         }
+
         return strtoupper($this->state);
     }
- 
+
     public function getCountry()
     {
-        if (strlen($this->country) != 2) {
+        if (2 != strlen($this->country)) {
             throw new \InvalidArgumentException('country must be two characters');
         }
+
         return strtoupper($this->country);
     }
 }

@@ -27,18 +27,17 @@ class Config
     protected $endpoint;
 
     public function __construct(
-        int $storeCode, 
-        string $username, 
-        string $password, 
+        int $storeCode,
+        string $username,
+        string $password,
         string $endpoint
-    )
-    {
+    ) {
         $this->storeCode = $storeCode;
         $this->username = $username;
         $this->password = $password;
         $this->endpoint = $endpoint;
-    }   
-    
+    }
+
     public function getStoreCode(): int
     {
         return $this->storeCode;
@@ -61,6 +60,7 @@ class Config
                 'config must have a valid endpoint url'
             );
         }
+
         return $this->endpoint;
     }
 }

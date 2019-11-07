@@ -5,6 +5,10 @@ namespace Tests\Result;
 use PHPUnit\Framework\TestCase;
 use Rockbuzz\SDKYapay\Result\Fail;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class FailTest extends TestCase
 {
     /**
@@ -17,10 +21,10 @@ class FailTest extends TestCase
         $json = json_encode([
             'erro' => [
                 'codigo' => '500',
-                'mensagem' => 'Test Message'
+                'mensagem' => 'Test Message',
             ],
             'statusTransacao' => 1,
-            'codigoEstabelecimento' => '123'
+            'codigoEstabelecimento' => '123',
         ]);
 
         $this->assertEquals($json, json_encode($fail));

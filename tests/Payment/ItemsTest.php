@@ -6,6 +6,10 @@ use PHPUnit\Framework\TestCase;
 use Rockbuzz\SDKYapay\Payment\Item;
 use Rockbuzz\SDKYapay\Payment\Items;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class ItemsTest extends TestCase
 {
     /**
@@ -25,7 +29,7 @@ class ItemsTest extends TestCase
     {
         $items = new Items([
             new Item('12345', 'Product Name', 1478),
-            new Item('67890', 'Product Name Two', 6987, 2)
+            new Item('67890', 'Product Name Two', 6987, 2),
         ]);
 
         $json = json_encode(
@@ -34,14 +38,14 @@ class ItemsTest extends TestCase
                     'codigoProduto' => '12345',
                     'nomeProduto' => 'Product Name',
                     'valorUnitarioProduto' => 1478,
-                    'quantidadeProduto' => 1
+                    'quantidadeProduto' => 1,
                 ],
                 [
                     'codigoProduto' => '67890',
                     'nomeProduto' => 'Product Name Two',
                     'valorUnitarioProduto' => 6987,
-                    'quantidadeProduto' => 2
-                ]
+                    'quantidadeProduto' => 2,
+                ],
             ]
         );
 

@@ -2,8 +2,6 @@
 
 namespace Rockbuzz\SDKYapay\Payment;
 
-use Rockbuzz\SDKYapay\Payment\Customer;
-
 class Billing implements \JsonSerializable
 {
     /**
@@ -21,8 +19,8 @@ class Billing implements \JsonSerializable
         $data = [
             'codigoCliente' => $this->customer->getId(),
             'nome' => $this->customer->getName(),
-            'document' => $this->customer->getDocument(),
-            'email' => $this->customer->getEmail()            
+            'documento' => $this->customer->getDocument(),
+            'email' => $this->customer->getEmail(),
         ];
 
         if ($this->customer->hasAddress()) {
@@ -37,8 +35,8 @@ class Billing implements \JsonSerializable
                         'bairro' => $this->customer->getAddressNeighborhood(),
                         'cidade' => $this->customer->getAddressCity(),
                         'estado' => $this->customer->getAddressState(),
-                        'pais' => $this->customer->getAddressCountry()
-                    ]
+                        'pais' => $this->customer->getAddressCountry(),
+                    ],
                 ]
             );
         }

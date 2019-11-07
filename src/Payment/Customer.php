@@ -2,9 +2,6 @@
 
 namespace Rockbuzz\SDKYapay\Payment;
 
-use Rockbuzz\SDKYapay\Payment\Email;
-use Rockbuzz\SDKYapay\Payment\Address;
-
 class Customer
 {
     /**
@@ -15,7 +12,7 @@ class Customer
     /**
      * @var string
      */
-    private $name;    
+    private $name;
 
     /**
      * @var string
@@ -33,15 +30,14 @@ class Customer
     private $address;
 
     public function __construct(
-        int $id, 
-        string $name, 
-        string $document, 
+        int $id,
+        string $name,
+        string $document,
         Email $email,
         Address $address = null
-    )
-    {
+    ) {
         $this->id = $id;
-        $this->name = $name;        
+        $this->name = $name;
         $this->document = $document;
         $this->email = $email;
         $this->address = $address;
@@ -49,7 +45,7 @@ class Customer
 
     public function hasAddress(): bool
     {
-        return !! $this->address;
+        return (bool) $this->address;
     }
 
     public function setAddress(Address $address)
@@ -61,7 +57,7 @@ class Customer
     {
         return $this->id;
     }
- 
+
     public function getName(): string
     {
         return $this->name;

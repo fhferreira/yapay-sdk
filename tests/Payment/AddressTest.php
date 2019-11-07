@@ -5,6 +5,10 @@ namespace Tests\Payment;
 use PHPUnit\Framework\TestCase;
 use Rockbuzz\SDKYapay\Payment\Address;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class AddressTest extends TestCase
 {
     /**

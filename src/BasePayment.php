@@ -2,8 +2,8 @@
 
 namespace Rockbuzz\SDKYapay;
 
-use Rockbuzz\SDKYapay\Payment\Items;
 use Rockbuzz\SDKYapay\Payment\Billing;
+use Rockbuzz\SDKYapay\Payment\Items;
 
 abstract class BasePayment
 {
@@ -28,12 +28,11 @@ abstract class BasePayment
     protected $billing;
 
     public function __construct(
-        Config $config, 
+        Config $config,
         int $methodCode,
         Items $items,
         Billing $billing
-    )
-    {
+    ) {
         $this->config = $config;
         $this->methodCode = $methodCode;
         $this->items = $items;

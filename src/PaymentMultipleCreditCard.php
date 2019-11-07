@@ -7,25 +7,34 @@ use GuzzleHttp\ClientInterface;
 use Rockbuzz\SDKYapay\Contract\Payment;
 use Rockbuzz\SDKYapay\Exception\PaymentException;
 use Rockbuzz\SDKYapay\Payment\Billing;
+use Rockbuzz\SDKYapay\Payment\CreditCard;
 use Rockbuzz\SDKYapay\Payment\Items;
-use Rockbuzz\SDKYapay\Payment\TransactionBoleto;
+use Rockbuzz\SDKYapay\Payment\MultipleCreditCard;
+use Rockbuzz\SDKYapay\Payment\TransactionCreditCard;
 
-class PaymentBoleto extends BasePayment implements Payment
+class PaymentMultipleCreditCard extends BasePayment implements Payment
 {
     /**
-     * @var TransactionBoleto
+     * @var TransactionCreditCard
      */
     protected $transaction;
+
+    /**
+     * @var CreditCard
+     */
+    protected $creditCard;
 
     public function __construct(
         Config $config,
         int $methodCode,
-        TransactionBoleto $transaction,
+        TransactionCreditCard $transaction,
+        MultipleCreditCard $creditCard,
         Items $items,
         Billing $billing
     ) {
         parent::__construct($config, $methodCode, $items, $billing);
         $this->transaction = $transaction;
+        $this->creditCard = $creditCard;
     }
 
     public function done(ClientInterface $client = null): Result
@@ -57,6 +66,9 @@ class PaymentBoleto extends BasePayment implements Payment
                 'codigoEstabelecimento' => $this->config->getStoreCode(),
                 'codigoFormaPagamento' => $this->methodCode,
                 'transacao' => $this->transaction,
+                'dadosMultiplosCartoes' => [
+                    $this->creditCard,
+                ],
                 'itensDoPedido' => $this->items,
                 'dadosCobranca' => $this->billing,
             ]),

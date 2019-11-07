@@ -5,6 +5,10 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use Rockbuzz\SDKYapay\Config;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class ConfigTest extends TestCase
 {
     /**

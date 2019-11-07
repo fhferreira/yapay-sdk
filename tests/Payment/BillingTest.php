@@ -3,11 +3,15 @@
 namespace Tests\Payment;
 
 use PHPUnit\Framework\TestCase;
-use Rockbuzz\SDKYapay\Payment\Customer;
-use Rockbuzz\SDKYapay\Payment\Billing;
-use Rockbuzz\SDKYapay\Payment\Email;
 use Rockbuzz\SDKYapay\Payment\Address;
+use Rockbuzz\SDKYapay\Payment\Billing;
+use Rockbuzz\SDKYapay\Payment\Customer;
+use Rockbuzz\SDKYapay\Payment\Email;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class BillingTest extends TestCase
 {
     /**
@@ -16,9 +20,13 @@ class BillingTest extends TestCase
     public function aBillingMustHaveToJason()
     {
         $billing = new Billing(
-                new Customer(123, 'Customer Name', '123456789', new Email('example@email.com'),
-                new Address('street', 1234, '', '123456-789', 'center', 'City', 'ST')
-            )
+            new Customer(
+                    123,
+                    'Customer Name',
+                    '123456789',
+                    new Email('example@email.com'),
+                    new Address('street', 1234, '', '123456-789', 'center', 'City', 'ST')
+                )
         );
 
         $json = json_encode([
@@ -34,8 +42,8 @@ class BillingTest extends TestCase
                 'bairro' => 'center',
                 'cidade' => 'City',
                 'estado' => 'ST',
-                'pais' => 'BR'
-            ]
+                'pais' => 'BR',
+            ],
         ]);
 
         $this->assertEquals($json, json_encode($billing));

@@ -25,18 +25,17 @@ class Item
     private $quantity;
 
     public function __construct(
-        string $productId, 
-        string $productName, 
+        string $productId,
+        string $productName,
         int $priceInCents,
         int $quantity = 1
-    )
-    {
+    ) {
         $this->productId = $productId;
         $this->productName = $productName;
         $this->priceInCents = $priceInCents;
         $this->quantity = $quantity;
-    }    
- 
+    }
+
     public function getProductId(): string
     {
         return $this->productId;

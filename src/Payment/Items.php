@@ -2,8 +2,6 @@
 
 namespace Rockbuzz\SDKYapay\Payment;
 
-use Rockbuzz\SDKYapay\Payment\Item;
-
 class Items implements \JsonSerializable
 {
     /**
@@ -12,18 +10,13 @@ class Items implements \JsonSerializable
     private $data = [];
 
     /**
-     * @var Item[] $items
+     * @var Item[]
      */
     public function __construct(array $items)
     {
         array_walk($items, function (Item $item) {
             $this->add($item);
-        });       
-    }
- 
-    protected function add(Item $item): void
-    {
-        array_push($this->data, $item);
+        });
     }
 
     public function jsonSerialize()
@@ -33,8 +26,13 @@ class Items implements \JsonSerializable
                 'codigoProduto' => $item->getProductId(),
                 'nomeProduto' => $item->getProductName(),
                 'valorUnitarioProduto' => $item->getPriceInCents(),
-                'quantidadeProduto' => $item->getQuantity()
+                'quantidadeProduto' => $item->getQuantity(),
             ];
         }, $this->data);
+    }
+
+    protected function add(Item $item): void
+    {
+        array_push($this->data, $item);
     }
 }

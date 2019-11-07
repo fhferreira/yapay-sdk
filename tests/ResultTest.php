@@ -7,6 +7,10 @@ use Rockbuzz\SDKYapay\Result;
 use Rockbuzz\SDKYapay\Result\Fail;
 use Rockbuzz\SDKYapay\Result\Success;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class ResultTest extends TestCase
 {
     /**

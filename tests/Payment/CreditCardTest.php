@@ -5,6 +5,10 @@ namespace Tests\Payment;
 use PHPUnit\Framework\TestCase;
 use Rockbuzz\SDKYapay\Payment\CreditCard;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class CreditCardTest extends TestCase
 {
     /**
@@ -18,7 +22,7 @@ class CreditCardTest extends TestCase
             'nomePortador' => 'Test Name',
             'numeroCartao' => 123456789,
             'codigoSeguranca' => 123,
-            'dataValidade' => '10/2020'
+            'dataValidade' => '10/2020',
         ]);
 
         $this->assertEquals($json, json_encode($creditCard));

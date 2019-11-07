@@ -10,14 +10,13 @@ class TransactionCreditCard extends BaseTransaction implements \JsonSerializable
     private $installments;
 
     public function __construct(
-        int $number, 
-        int $value, 
-        int $installments, 
+        int $number,
+        int $value,
+        int $installments,
         string $notificationUrl
-    )
-    {
-        parent::__construct($number, $value, $notificationUrl);     
-        $this->installments = $installments;      
+    ) {
+        parent::__construct($number, $value, $notificationUrl);
+        $this->installments = $installments;
     }
 
     public function jsonSerialize()

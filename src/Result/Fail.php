@@ -25,12 +25,11 @@ class Fail implements \JsonSerializable
     protected $storeCode;
 
     public function __construct(
-        string $errorCode, 
-        string $errorMessage, 
+        string $errorCode,
+        string $errorMessage,
         int $transactionStatus,
         string $storeCode
-    )
-    {
+    ) {
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
         $this->transactionStatus = $transactionStatus;
@@ -42,10 +41,10 @@ class Fail implements \JsonSerializable
         return [
             'erro' => [
                 'codigo' => $this->errorCode,
-                'mensagem' => $this->errorMessage
+                'mensagem' => $this->errorMessage,
             ],
             'statusTransacao' => $this->transactionStatus,
-            'codigoEstabelecimento' => $this->storeCode
+            'codigoEstabelecimento' => $this->storeCode,
         ];
     }
 }

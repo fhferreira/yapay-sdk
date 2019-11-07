@@ -5,6 +5,10 @@ namespace Tests\Payment;
 use PHPUnit\Framework\TestCase;
 use Rockbuzz\SDKYapay\Payment\TransactionCreditCard;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class TransactionCreditCardTest extends TestCase
 {
     /**
@@ -13,14 +17,17 @@ class TransactionCreditCardTest extends TestCase
     public function aTransactionCreditCardMustHaveToJason()
     {
         $transactionCreditCard = new TransactionCreditCard(
-            123, 1598, 2, 'http://notification-url.com'
+            123,
+            1598,
+            2,
+            'http://notification-url.com'
         );
 
         $json = json_encode([
             'numeroTransacao' => 123,
             'valor' => 1598,
             'parcelas' => 2,
-            'urlCampainha' => 'http://notification-url.com'
+            'urlCampainha' => 'http://notification-url.com',
         ]);
 
         $this->assertEquals($json, json_encode($transactionCreditCard));
