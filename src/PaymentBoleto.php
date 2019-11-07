@@ -52,8 +52,8 @@ class PaymentBoleto extends BasePayment implements Payment
                 'Content-Type' => 'application/json'
             ],
             'auth' => [
-                'username' => $this->config->getUsername(),
-                'password' => $this->config->getPassword(),
+                '0' => $this->config->getUsername(),
+                '1' => $this->config->getPassword(),
             ],
             'body' => json_encode([
                 'codigoEstabelecimento' => $this->config->getStoreCode(),
