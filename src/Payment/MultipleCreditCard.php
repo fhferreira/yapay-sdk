@@ -75,7 +75,7 @@ class MultipleCreditCard implements \JsonSerializable
             'codigoFormaPagamento' => $this->paymentMethodCode,
             'parcelas' => $this->installments,
             'valor' => $this->amount,
-            'dataValidade' => "{$this->expirationMonth}/{$this->expirationYear}",
+            'dataValidade' => sprintf('%s/%s', $this->expirationMonth, $this->expirationYear),
         ];
     }
 }

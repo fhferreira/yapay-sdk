@@ -7,6 +7,11 @@ class Item
     /**
      * @var string
      */
+    private $categoryId;
+
+    /**
+     * @var string
+     */
     private $productId;
 
     /**
@@ -28,12 +33,19 @@ class Item
         string $productId,
         string $productName,
         int $priceInCents,
-        int $quantity = 1
+        int $quantity = 1,
+        string $categoryId = ''
     ) {
         $this->productId = $productId;
         $this->productName = $productName;
         $this->priceInCents = $priceInCents;
         $this->quantity = $quantity;
+        $this->categoryId = $categoryId;
+    }
+
+    public function getCategoryId(): string
+    {
+        return $this->categoryId > 0 ? $this->categoryId: 1;
     }
 
     public function getProductId(): string

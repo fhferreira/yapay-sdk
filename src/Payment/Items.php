@@ -23,10 +23,11 @@ class Items implements \JsonSerializable
     {
         return array_map(function (Item $item) {
             return [
-                'codigoProduto' => $item->getProductId(),
-                'nomeProduto' => $item->getProductName(),
-                'valorUnitarioProduto' => $item->getPriceInCents(),
+                'codigoCategoria' => (string) $item->getCategoryId(),
+                'codigoProduto' => (string) $item->getProductId(),
+                'nomeProduto' => (string) $item->getProductName(),
                 'quantidadeProduto' => $item->getQuantity(),
+                'valorUnitarioProduto' => $item->getPriceInCents(),
             ];
         }, $this->data);
     }

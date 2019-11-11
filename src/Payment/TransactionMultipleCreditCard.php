@@ -25,7 +25,7 @@ class TransactionMultipleCreditCard extends BaseTransaction implements \JsonSeri
             'numeroTransacao' => $this->number,
             'valor' => $this->value,
             'idioma' => $this->language,
-            'urlCampainha' => $this->notificationUrl,
+            'urlCampainha' => $this->notificationUrl
         ];
     }
 }

@@ -53,28 +53,29 @@ class PaymentMultipleCreditCard extends BasePayment implements Payment
 
     private function getContents(ClientInterface $client)
     {
+
         $body = json_encode([
-            'codigoEstabelecimento' => $this->config->getStoreCode(),
-            'codigoFormaPagamento' => $this->methodCode,
+            'codigoEstabelecimento' => (int) $this->config->getStoreCode(),
+            'codigoFormaPagamento' => (int) $this->methodCode,
             'dadosMultiplosCartoes' => [
                 $this->creditCard,
             ],
-            'transacao' => $this->transaction,
             'itensDoPedido' => $this->items,
+            'transacao' => $this->transaction,
             'dadosCobranca' => $this->billing,
         ]);
 
         $response = $client->request('POST', $this->config->getEndpoint(), [
             'headers' => [
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
+                'Accept'        => 'application/json',
+                'Content-Type'  => 'application/json',
                 'Cache-Control' => 'no-cache',
             ],
-            'auth' => [
+            'auth'    => [
                 '0' => $this->config->getUsername(),
                 '1' => $this->config->getPassword(),
             ],
-            'body' => $body,
+            'body'    => $body,
         ]);
 
         return $response->getBody()->getContents();

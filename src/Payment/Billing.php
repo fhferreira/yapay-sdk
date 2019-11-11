@@ -17,9 +17,9 @@ class Billing implements \JsonSerializable
     public function jsonSerialize()
     {
         $data = [
-            'codigoCliente' => $this->customer->getId(),
-            'nome' => $this->customer->getName(),
-            'documento' => $this->customer->getDocument(),
+            'codigoCliente' => (int) $this->customer->getId(),
+            'nome' => (string) $this->customer->getName(),
+            'documento' =>  (string) $this->customer->getDocument(),
             'email' => $this->customer->getEmail(),
         ];
 
@@ -28,14 +28,14 @@ class Billing implements \JsonSerializable
                 $data,
                 [
                     'endereco' => [
-                        'logradouro' => $this->customer->getAddressStreet(),
-                        'numero' => $this->customer->getAddressNumber(),
-                        'complemento' => $this->customer->getAddressComplement(),
-                        'cep' => $this->customer->getAddressPostalCode(),
-                        'bairro' => $this->customer->getAddressNeighborhood(),
-                        'cidade' => $this->customer->getAddressCity(),
-                        'estado' => $this->customer->getAddressState(),
-                        'pais' => $this->customer->getAddressCountry(),
+                        'logradouro' => (string) $this->customer->getAddressStreet(),
+                        'numero' => (string) $this->customer->getAddressNumber(),
+                        'complemento' => (string) $this->customer->getAddressComplement(),
+                        'cep' => (string) $this->customer->getAddressPostalCode(),
+                        'bairro' => (string) $this->customer->getAddressNeighborhood(),
+                        'cidade' => (string) $this->customer->getAddressCity(),
+                        'estado' => (string) $this->customer->getAddressState(),
+                        'pais' => (string) $this->customer->getAddressCountry(),
                     ],
                 ]
             );

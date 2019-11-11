@@ -25,7 +25,15 @@ class Success implements \JsonSerializable
 
     public function isCredidCard(): bool
     {
-        return in_array($this->json->codigoFormaPagamento, [self::METHOD_CREDITCARD, self::METHOD_MULTIPLE_CREDITCARDS]);
+        try {
+            if (isset($this->json->codigoFormaPagamento)) {
+                return in_array($this->json->codigoFormaPagamento, [self::METHOD_CREDITCARD, self::METHOD_MULTIPLE_CREDITCARDS]);
+            } else if ($this->json->multiploCartao == 1) {
+                return true;
+            }
+        } catch (\Exception $e)  {
+            dd($this->json, $e);
+        }
     }
 
     public function jsonSerialize()
@@ -43,7 +51,7 @@ class Success implements \JsonSerializable
             'urlPagamento' => (isset($this->json) and isset($this->json->urlPagamento)) ? $this->json->urlPagamento : '',
         ];
 
-        if ($this->isCredidCard()) {
+        if ($this->isCredidCard() AND (!isset($this->json->multiploCartao) OR $this->json->multiploCartao == 0)) {
             $data = array_merge($data, [
                 'nsu' => (isset($this->json) and isset($this->json->nsu)) ? $this->json->nsu : '',
                 'mensagemVenda' => (isset($this->json) and isset($this->json->mensagemVenda)) ? $this->json->mensagemVenda : '',
@@ -51,6 +59,13 @@ class Success implements \JsonSerializable
                 'dataAprovacaoOperadora' => (isset($this->json) and isset($this->json->dataAprovacaoOperadora)) ? $this->json->dataAprovacaoOperadora : '',
                 'numeroComprovanteVenda' => (isset($this->json) and isset($this->json->numeroComprovanteVenda)) ? $this->json->numeroComprovanteVenda : '',
             ]);
+        } else if ($this->isCredidCard() AND $this->json->multiploCartao == 1) {
+            $data['nsu'] = '';
+            $data['autorizacao'] = $this->json->detalhesMultiploCartao[0]->autorizacao;
+            $data['codigoTransacaoOperadora'] = $this->json->detalhesMultiploCartao[0]->codigoTransacaoOperadora;
+            $data['numeroComprovanteVenda'] = $this->json->detalhesMultiploCartao[0]->numeroComprovanteVenda;
+            $data['mensagemVenda'] = $this->json->detalhesMultiploCartao[0]->mensagemVenda;
+            $data['dataAprovacaoOperadora'] = $this->json->detalhesMultiploCartao[0]->dataAprovacaoOperadora;
         }
 
         return $data;
