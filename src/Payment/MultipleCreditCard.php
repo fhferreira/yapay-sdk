@@ -70,8 +70,8 @@ class MultipleCreditCard implements \JsonSerializable
 
         return [
             'nomePortador' => $this->holderName,
-            'numeroCartao' => $this->number,
-            'codigoSeguranca' => $this->securityCode,
+            'numeroCartao' => (string) $this->number,
+            'codigoSeguranca' => (string) $this->securityCode,
             'codigoFormaPagamento' => $this->paymentMethodCode,
             'parcelas' => $this->installments,
             'valor' => $this->amount,
