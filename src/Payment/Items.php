@@ -22,13 +22,19 @@ class Items implements \JsonSerializable
     public function jsonSerialize()
     {
         return array_map(function (Item $item) {
-            return [
-                'codigoCategoria' => (string) $item->getCategoryId(),
+
+            $dataItem =[
                 'codigoProduto' => (string) $item->getProductId(),
                 'nomeProduto' => (string) $item->getProductName(),
                 'quantidadeProduto' => $item->getQuantity(),
                 'valorUnitarioProduto' => $item->getPriceInCents(),
             ];
+
+            if ($item->getCategoryId()) {
+                $dataItem['codigoCategoria'] = $item->getCategoryId();
+            }
+
+            return $dataItem;
         }, $this->data);
     }
 

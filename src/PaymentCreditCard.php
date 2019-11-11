@@ -51,6 +51,15 @@ class PaymentCreditCard extends BasePayment implements Payment
 
     private function getContents(ClientInterface $client)
     {
+        $body = json_encode([
+            'codigoEstabelecimento' => $this->config->getStoreCode(),
+            'codigoFormaPagamento' => $this->methodCode,
+            'transacao' => $this->transaction,
+            'dadosCartao' => $this->creditCard,
+            'itensDoPedido' => $this->items,
+            'dadosCobranca' => $this->billing,
+        ]);
+
         $response = $client->request('POST', $this->config->getEndpoint(), [
             'headers' => [
                 'Accept' => 'application/json',
@@ -60,14 +69,7 @@ class PaymentCreditCard extends BasePayment implements Payment
                 '0' => $this->config->getUsername(),
                 '1' => $this->config->getPassword(),
             ],
-            'body' => json_encode([
-                'codigoEstabelecimento' => $this->config->getStoreCode(),
-                'codigoFormaPagamento' => $this->methodCode,
-                'transacao' => $this->transaction,
-                'dadosDoCartao' => $this->creditCard,
-                'itensDoPedido' => $this->items,
-                'dadosCobranca' => $this->billing,
-            ]),
+            'body' => $body
         ]);
 
         return $response->getBody()->getContents();

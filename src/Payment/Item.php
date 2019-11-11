@@ -45,7 +45,7 @@ class Item
 
     public function getCategoryId(): string
     {
-        return $this->categoryId > 0 ? $this->categoryId: 1;
+        return $this->categoryId;
     }
 
     public function getProductId(): string

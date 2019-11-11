@@ -45,8 +45,8 @@ class CreditCard implements \JsonSerializable
 
         return [
             'nomePortador' => $this->holderName,
-            'numeroCartao' => $this->number,
-            'codigoSeguranca' => $this->securityCode,
+            'numeroCartao' => (string) $this->number,
+            'codigoSeguranca' => (string) $this->securityCode,
             'dataValidade' => "{$this->expirationMonth}/{$this->expirationYear}",
         ];
     }
