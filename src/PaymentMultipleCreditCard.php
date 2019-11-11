@@ -11,6 +11,7 @@ use Rockbuzz\SDKYapay\Payment\CreditCard;
 use Rockbuzz\SDKYapay\Payment\Items;
 use Rockbuzz\SDKYapay\Payment\MultipleCreditCard;
 use Rockbuzz\SDKYapay\Payment\TransactionCreditCard;
+use Rockbuzz\SDKYapay\Payment\TransactionMultipleCreditCard;
 
 class PaymentMultipleCreditCard extends BasePayment implements Payment
 {
@@ -27,7 +28,7 @@ class PaymentMultipleCreditCard extends BasePayment implements Payment
     public function __construct(
         Config $config,
         int $methodCode,
-        TransactionCreditCard $transaction,
+        TransactionMultipleCreditCard $transaction,
         MultipleCreditCard $creditCard,
         Items $items,
         Billing $billing
@@ -65,10 +66,10 @@ class PaymentMultipleCreditCard extends BasePayment implements Payment
             'body' => json_encode([
                 'codigoEstabelecimento' => $this->config->getStoreCode(),
                 'codigoFormaPagamento' => $this->methodCode,
-                'transacao' => $this->transaction,
                 'dadosMultiplosCartoes' => [
                     $this->creditCard,
                 ],
+                'transacao' => $this->transaction,
                 'itensDoPedido' => $this->items,
                 'dadosCobranca' => $this->billing,
             ]),
