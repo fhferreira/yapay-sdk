@@ -66,6 +66,8 @@ class MultipleCreditCard implements \JsonSerializable
 
     public function jsonSerialize()
     {
+        $this->expirationMonth = str_pad($this->expirationMonth, 2, '0', STR_PAD_LEFT);
+
         return [
             'nomePortador' => $this->holderName,
             'numeroCartao' => $this->number,
