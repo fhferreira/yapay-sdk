@@ -51,30 +51,54 @@ class PaymentCreditCard extends BasePayment implements Payment
 
     private function getContents(ClientInterface $client)
     {
-        $body = json_encode([
-            'codigoEstabelecimento' => $this->config->getStoreCode(),
-            'codigoFormaPagamento' => $this->methodCode,
-            'transacao' => $this->transaction,
-            'dadosCartao' => $this->creditCard,
-            'itensDoPedido' => $this->items,
-            'dadosCobranca' => $this->billing,
-        ]);
+        try {
 
-        $response = $client->request('POST', $this->config->getEndpoint(), [
-            'headers' => [
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
-                'Cache-Control' => 'no-cache',
-                "accept-encoding" => "gzip, deflate",
-                'decode_content' => false
-            ],
-            'auth' => [
-                '0' => $this->config->getUsername(),
-                '1' => $this->config->getPassword(),
-            ],
-            'body' => $body
-        ]);
+            $body = json_encode([
+                'codigoEstabelecimento' => $this->config->getStoreCode(),
+                'codigoFormaPagamento'  => $this->methodCode,
+                'transacao'             => $this->transaction,
+                'dadosCartao'           => $this->creditCard,
+                'itensDoPedido'         => $this->items,
+                'dadosCobranca'         => $this->billing,
+            ]);
 
-        return $response->getBody()->getContents();
+            $response = $client->request('POST', $this->config->getEndpoint(), [
+                'headers' => [
+                    'Accept'          => 'application/json',
+                    'Content-Type'    => 'application/json',
+                    'Cache-Control'   => 'no-cache',
+                    "accept-encoding" => "gzip, deflate",
+                    'decode_content'  => false
+                ],
+                'auth'    => [
+                    '0' => $this->config->getUsername(),
+                    '1' => $this->config->getPassword(),
+                ],
+                'body'    => $body,
+                'stream' => true
+            ]);
+
+            return $response->getBody()->getContents();
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            $body = $e->getResponse()->getBody();
+            $response = $body->getContents();
+            return $response;
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            $body = $e->getResponse()->getBody();
+            $response = $body->getContents();
+            return $response;
+        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+            $body = $e->getResponse()->getBody();
+            $response = $body->getContents();
+            return $response;
+        }  catch (\GuzzleHttp\Exception\ClientException $e) {
+            $body = $e->getResponse()->getBody();
+            $response = $body->getContents();
+            return $response;
+        }  catch (\GuzzleHttp\Exception\ConnectException $e) {
+            $body = $e->getResponse()->getBody();
+            $response = $body->getContents();
+            return $response;
+        }
     }
 }
