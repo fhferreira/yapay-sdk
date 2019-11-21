@@ -65,7 +65,8 @@ class PaymentCreditCard extends BasePayment implements Payment
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
                 'Cache-Control' => 'no-cache',
-                "accept-encoding" => "gzip, deflate"
+                "accept-encoding" => "gzip, deflate",
+                'decode_content' => false
             ],
             'auth' => [
                 '0' => $this->config->getUsername(),
