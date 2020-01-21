@@ -15,7 +15,7 @@ class MultipleCreditCard implements \JsonSerializable
     private $number;
 
     /**
-     * @var int
+     * @var string
      */
     private $securityCode;
 
@@ -47,7 +47,7 @@ class MultipleCreditCard implements \JsonSerializable
     public function __construct(
         string $holderName,
         int $number,
-        int $securityCode,
+        string $securityCode,
         int $expirationMonth,
         int $expirationYear,
         int $paymentMethodCode,
