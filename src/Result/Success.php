@@ -101,6 +101,7 @@ class Success implements \JsonSerializable
             'codigoEstabelecimento' => (isset($this->json) and isset($this->json->codigoEstabelecimento)) ? $this->json->codigoEstabelecimento : '',
             'valor' => (isset($this->json) and isset($this->json->valor)) ? $this->json->valor : '',
             'valorDesconto' => (isset($this->json) and isset($this->json->valorDesconto)) ? $this->json->valorDesconto : '',
+            'valorPago' => (isset($this->json) and isset($this->json->valorPago)) ? $this->json->valorPago : '',
             'parcelas' => (isset($this->json) and isset($this->json->parcelas)) ? $this->json->parcelas : '',
             'autorizacao' => (isset($this->json) and isset($this->json->autorizacao)) ? $this->json->autorizacao : '',
             'codigoTransacaoOperadora' => (isset($this->json) and isset($this->json->codigoTransacaoOperadora)) ? $this->json->codigoTransacaoOperadora : '',
