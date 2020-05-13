@@ -106,6 +106,7 @@ class Success implements \JsonSerializable
             'autorizacao' => (isset($this->json) and isset($this->json->autorizacao)) ? $this->json->autorizacao : '',
             'codigoTransacaoOperadora' => (isset($this->json) and isset($this->json->codigoTransacaoOperadora)) ? $this->json->codigoTransacaoOperadora : '',
             'urlPagamento' => (isset($this->json) and isset($this->json->urlPagamento)) ? $this->json->urlPagamento : '',
+            'dataAprovacaoOperadora' => (isset($this->json) and isset($this->json->dataAprovacaoOperadora)) ? $this->json->dataAprovacaoOperadora : '',
         ];
 
         if ($this->isCredidCard() AND (!isset($this->json->multiploCartao) OR $this->json->multiploCartao == 0)) {
@@ -113,8 +114,7 @@ class Success implements \JsonSerializable
             $data = array_merge($data, [
                 'nsu' => (isset($this->json) and isset($this->json->nsu)) ? $this->json->nsu : '',
                 'mensagemVenda' => (isset($this->json) and isset($this->json->mensagemVenda)) ? $this->json->mensagemVenda : '',
-                'cartoesUtilizados' => (isset($this->json) and isset($this->json->cartoesUtilizados)) ? $this->json->cartoesUtilizados[0] : '',
-                'dataAprovacaoOperadora' => (isset($this->json) and isset($this->json->dataAprovacaoOperadora)) ? $this->json->dataAprovacaoOperadora : '',
+                'cartoesUtilizados' => (isset($this->json) and isset($this->json->cartoesUtilizados)) ? $this->json->cartoesUtilizados[0] : '',                
                 'numeroComprovanteVenda' => (isset($this->json) and isset($this->json->numeroComprovanteVenda)) ? $this->json->numeroComprovanteVenda : '',
             ]);
 
